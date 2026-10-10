@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7f4">
+  <meta name="description" content="Check suspicious messages privately, learn common warning signs, and find safer next steps.">
+  <title>ScamShield | A calmer way to check a message</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="analyzer.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="ScamShield home">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>scam<span class="brand-accent">shield</span></span>
+    </a>
+    <nav class="topnav" aria-label="Main navigation">
+      <a href="#how-it-works">How it works</a>
+      <a href="#learn">Safety tips</a>
+    </nav>
+    <span class="privacy-pill"><span aria-hidden="true">●</span> Private by design</span>
+  </header>
+
+  <main id="top" class="page-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> A little clarity goes a long way</span>
+        <h1 id="hero-title">Not sure about that message? <span>Pause. Check. Decide.</span></h1>
+        <p>Get a simple, private look at common warning signs—and learn what to do next, without the scare tactics.</p>
+        <a class="text-link" href="#checker">Check a message <span aria-hidden="true">↓</span></a>
+      </div>
+      <aside class="hero-note" aria-label="A helpful reminder">
+        <span class="note-icon" aria-hidden="true">✳</span>
+        <div>
+          <strong>A useful second look</strong>
+          <p>No checker can prove a message is safe. If something feels off, take your time and verify it another way.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="checker" class="checker-layout" aria-label="Message checker">
+      <div class="panel checker-panel">
+        <div class="panel-heading">
+          <span class="heading-icon" aria-hidden="true">⌕</span>
+          <div>
+            <p class="overline">MESSAGE CHECKER</p>
+            <h2>What did the message say?</h2>
+            <p class="heading-description">Paste the text of an SMS, email, or chat message below.</p>
+          </div>
+        </div>
+
+        <form id="checkerForm" novalidate>
+          <label for="message">Message text</label>
+          <textarea id="message" name="message" rows="6" maxlength="5000"
+            placeholder="Paste a message here. You can leave out names or personal details."
+            aria-describedby="privacyNote charCount inputError"></textarea>
+          <div class="input-footer">
+            <span id="charCount" aria-live="polite">0 / 5000</span>
+            <button id="clearBtn" class="text-button" type="button">Clear text</button>
+          </div>
+          <p id="inputError" class="error" role="alert" hidden></p>
+          <button id="analyzeBtn" class="primary-button" type="submit">
+            <span aria-hidden="true">✳</span> Check for warning signs
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </button>
+          <p id="privacyNote" class="privacy-note"><span aria-hidden="true">⌑</span> Your message is checked in this browser. It is not uploaded or saved.</p>
+        </form>
+
+        <section id="results" class="results" aria-live="polite" aria-atomic="false" hidden>
+          <div class="result-divider"></div>
+          <div class="result-title-row">
+            <div>
+              <p class="overline">YOUR CHECK-IN</p>
+              <h2>What we noticed</h2>
+            </div>
+            <span id="signalCount" class="signal-count"></span>
+          </div>
+          <div id="riskCard" class="risk-card">
+            <span id="riskIcon" class="risk-icon" aria-hidden="true">◌</span>
+            <div>
+              <span class="risk-kicker">PATTERN-BASED CHECK, NOT A VERDICT</span>
+              <h3 id="riskLevel"></h3>
+              <p id="riskSummary"></p>
+            </div>
+          </div>
+          <h3 class="subheading">Signals in this text</h3>
+          <ul id="signals" class="result-list"></ul>
+          <h3 class="subheading">A few safe next steps</h3>
+          <ul id="advice" class="result-list advice-list"></ul>
+          <p class="disclaimer">This tool checks for a limited set of text patterns. It cannot verify who sent a message, where a link goes, or whether a request is genuine. A message with few or no matches can still be harmful.</p>
+        </section>
+      </div>
+
+      <aside id="how-it-works" class="panel side-panel">
+        <span class="side-icon" aria-hidden="true">☝</span>
+        <p class="overline">BEFORE YOU REPLY</p>
+        <h2>Give yourself a moment.</h2>
+        <p>Scam messages often try to rush you. A pause gives you time to check what is really going on.</p>
+        <ul class="pause-list">
+          <li><span>01</span> Don’t tap links or open unexpected files.</li>
+          <li><span>02</span> Never share passwords, PINs, or one-time codes.</li>
+          <li><span>03</span> Check with the person or organization another way.</li>
+        </ul>
+        <a class="text-link side-link" href="#learn">More ways to stay safe <span aria-hidden="true">→</span></a>
+      </aside>
+    </section>
+
+    <section class="samples-section" aria-labelledby="samples-title">
+      <div class="section-intro">
+        <div>
+          <p class="overline">WANT TO TRY IT?</p>
+          <h2 id="samples-title">Start with an example</h2>
+        </div>
+        <p>These sample messages are made up. Choose one to see what the checker looks for.</p>
+      </div>
+      <div class="samples">
+        <button class="sample" data-sample="urgent" type="button">
+          <span class="sample-symbol urgent-symbol" aria-hidden="true">!</span>
+          <span class="sample-copy"><strong>An urgent account alert</strong><small>Pressure to act fast</small></span>
+          <span class="sample-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="sample" data-sample="prize" type="button">
+          <span class="sample-symbol prize-symbol" aria-hidden="true">✳</span>
+          <span class="sample-copy"><strong>An unexpected prize</strong><small>A reward with a fee</small></span>
+          <span class="sample-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="sample" data-sample="normal" type="button">
+          <span class="sample-symbol normal-symbol" aria-hidden="true">↗</span>
+          <span class="sample-copy"><strong>A study group reminder</strong><small>An everyday message</small></span>
+          <span class="sample-arrow" aria-hidden="true">↗</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="learn" class="learn-section" aria-labelledby="learn-title">
+      <div class="learn-heading">
+        <span class="learn-mark" aria-hidden="true">✳</span>
+        <div>
+          <p class="overline">SMALL HABITS, STRONGER SAFETY</p>
+          <h2 id="learn-title">A few things worth remembering</h2>
+        </div>
+      </div>
+      <div class="tips-grid">
+        <article class="tip-card">
+          <span class="tip-number">01</span>
+          <h3>Keep your codes to yourself</h3>
+          <p>A real support agent should never ask you to tell them your password, PIN, or one-time passcode.</p>
+        </article>
+        <article class="tip-card">
+          <span class="tip-number">02</span>
+          <h3>Find your own way there</h3>
+          <p>Instead of using a link in a surprise message, open the official app or type the website address yourself.</p>
+        </article>
+        <article class="tip-card">
+          <span class="tip-number">03</span>
+          <h3>Verify the request separately</h3>
+          <p>Call a known number or use a contact method you already trust—not details from the message.</p>
+        </article>
+      </div>
+      <div class="help-banner">
+        <span class="help-icon" aria-hidden="true">i</span>
+        <p><strong>Think you’ve lost money to online fraud in India?</strong> Contact your bank promptly and call the national cybercrime helpline at <strong>1930</strong>. You can also report it at <a href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer">cybercrime.gov.in</a>.</p>
+        <span class="external-mark" aria-hidden="true">↗</span>
+      </div>
+    </section>
+
+    <footer>
+      <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">S</span><span>scam<span class="brand-accent">shield</span></span></a>
+      <p>A learning tool, not a guarantee. When in doubt, verify independently.</p>
+    </footer>
+  </main>
+</body>
+</html>
